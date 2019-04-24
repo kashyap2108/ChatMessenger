@@ -1,0 +1,466 @@
+@import "variable";
+@import "https://fonts.googleapis.com/css?family=Open+Sans:400,600";
+@import "font";
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  color: $body-color;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.app-messenger {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    height: $header-height;
+
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid $border-color;
+    .left {
+      width: $left-sidebar-width;
+      position: relative;
+      .left-action {
+        position: absolute;
+        left: 8px;
+        top: 0;
+      }
+      .right-action {
+        position: absolute;
+        right: 8px;
+        top: 0;
+      }
+      h2 {
+        line-height: $header-height;
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+      }
+      button {
+        background: none;
+        line-height: $header-height;
+        border: 0 none;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+    .content {
+      flex-grow: 1;
+      h2 {
+        line-height: $header-height;
+        text-align: center;
+      }
+    }
+    .right {
+      width: $right-sidebar-width;
+      .user-bar {
+        line-height: $header-height;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 10px;
+        .profile-name {
+          padding-right: 10px;
+        }
+        .profile-image {
+          line-height: $header-height;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 10px 0px 0px 0px;
+          }
+        }
+      }
+    }
+  }
+  .main {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    .sidebar-left {
+      width: $left-sidebar-width;
+      border-right: 1px solid $border-color;
+    }
+    .sidebar-right {
+      width: $right-sidebar-width;
+      border-left: 1px solid $border-color;
+    }
+    .content {
+      flex-grow: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      .messages {
+        flex-grow: 1;
+      }
+      .messenger-input {
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        .text-input {
+          flex-grow: 1;
+          textarea {
+            border: 0 none;
+            width: 100%;
+            height: 100%;
+            padding: 0px 15px;
+          }
+        }
+        .actions {
+          button.send {
+            background: $primary-color;
+            color: #fff;
+            border: 0 none;
+            padding: 7px 15px;
+            line-height: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100%;
+  .message {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 20px 0;
+    .message-user-image {
+      img {
+        width: 70px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+    .message-body {
+      .message-author {
+      }
+      .message-text {
+        background: $body-color;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    }
+    &.me {
+      justify-content: flex-start;
+      .message-body {
+        .message-text {
+          background: $primary-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.chanels {
+  overflow: auto;
+  height: 100%;
+  .chanel {
+    cursor: pointer;
+    display: flex;
+    border-bottom: 1px solid $border-color;
+    padding: 8px 0;
+    .user-image {
+      width: 30px;
+      img {
+        max-width: 100%;
+      }
+      .channel-avatars {
+        overflow: hidden;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #ccc;
+        position: relative;
+        &.channel-avatars-1 {
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
+        &.channel-avatars-2 {
+          img {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            &:first-child {
+              left: 0;
+              top: 0;
+            }
+          }
+        }
+        &.channel-avatars-3 {
+          img {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            &:first-child {
+              left: 0;
+              top: 0;
+              width: 50%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+    .chanel-info {
+      flex-grow: 1;
+      padding-left: 8px;
+      h2 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+    &.active {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    &.notify {
+      .chanel-info {
+        p {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.members {
+  .member {
+    display: flex;
+    border-bottom: 1px solid $border-color;
+    padding: 8px 0;
+    .user-image {
+      width: 30px;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+    .member-info {
+      padding-left: 8px;
+      flex-grow: 1;
+      h2 {
+        font-size: 14px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+h2.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.toolbar {
+  height: $header-height;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  span {
+    line-height: 20px;
+    height: 30px;
+    background: $primary-color;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    border-radius: 3px;
+    margin: 10px 5px 0 0;
+    padding: 5px 8px;
+  }
+  label {
+    line-height: $header-height;
+  }
+  input {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    border: 0 none;
+  }
+  .search-user {
+    min-width: 180px;
+    position: absolute;
+    left: 0;
+    top: $header-height;
+    z-index: 1;
+    border: 1px solid $border-color;
+    border-top: 0 none;
+    .user-list {
+      display: flex;
+      flex-direction: column;
+      .user {
+        display: flex;
+        flex-direction: row;
+        padding: 5px;
+        border-bottom: 1px solid $border-color;
+        cursor: pointer;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin-top: 10px;
+        }
+        h2 {
+          padding-left: 8px;
+          flex-grow: 1;
+          font-size: 14px;
+        }
+        &:last-child {
+          border-bottom: 0 none;
+        }
+        &.hover {
+          background: rgba(0, 0, 0, 0.02);
+        }
+      }
+    }
+  }
+}
+
+.user-bar {
+  position: relative;
+  button.login-btn {
+    height: $header-height;
+    border: 0 none;
+    background: none;
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .user-form {
+    position: absolute;
+    top: $header-height;
+    right: 0;
+    border: 1px solid $border-color;
+    border-top: 0 none;
+    padding: 10px;
+    .form-item {
+      label {
+        line-height: 30px;
+        min-width: 100px;
+        text-align: right;
+        margin-right: 8px;
+      }
+      input[type="email"],
+      input[type="password"],
+      input[type="text"] {
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+    .form-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+  .user-menu {
+    min-width: 200px;
+    position: absolute;
+    right: 0;
+    top: $header-height;
+    border: 1px solid $border-color;
+    border-top: 0 none;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      li {
+        border-bottom: 1px solid $border-color;
+        padding: 5px 8px;
+        button {
+          background: none;
+          border: 0 none;
+          display: block;
+          cursor: pointer;
+          text-align: center;
+          width: 100%;
+        }
+      }
+    }
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 10px 0;
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+.form-item {
+  display: flex;
+  margin-bottom: 10px;
+  label {
+    font-weight: 600;
+  }
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    border: 1px solid $border-color;
+    padding: 3px 8px;
+  }
+}
+
+.form-actions {
+  button {
+    border: 0 none;
+    padding: 7px 15px;
+    text-align: center;
+    &.primary {
+      background: $primary-color;
+      color: #fff;
+    }
+  }
+}
+
+.app-message {
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  margin: 10px 0;
+  &.error {
+    background: $danger-color;
+    color: #fff;
+    border-color: $danger-color;
+  }
+}
+
+.user-status {
+  font-size: 10px;
+  color: $body-color;
+  &.online {
+    color: $primary-color;
+  }
+}
